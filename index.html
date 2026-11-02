@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080808">
+<title>Uide Fast Food — Мәзір</title>
+<style>
+:root{--gold:#ffb800;--orange:#ff7900;--black:#080808;--panel:#141414;--white:#fff;--muted:#c6c6c6}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--black);color:var(--white);font-family:Arial,Helvetica,sans-serif}
+a{color:inherit;text-decoration:none}.top{background:radial-gradient(ellipse at top,#382000 0,#080808 65%);padding:22px 16px 30px;text-align:center;border-bottom:1px solid #6b4300}
+.brand{font-size:clamp(38px,8vw,76px);font-weight:1000;letter-spacing:-2px;color:var(--gold);text-shadow:0 3px 0 #8d3b00}.brand span{display:block;font-size:.42em;font-style:italic;letter-spacing:0;color:#ff8b00;margin-top:-4px}
+.sub{color:#eee;margin:12px 0}.delivery{display:inline-block;background:var(--gold);color:#111;font-weight:900;padding:9px 18px;border-radius:30px;margin-top:8px}
+.header-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px}.btn{border:0;border-radius:12px;padding:11px 15px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px}.btn-gold{background:var(--gold);color:#111}.btn-dark{background:#222;color:#fff;border:1px solid #555}.container{width:min(1180px,100%);margin:auto;padding:24px 16px 100px}
+.notice{border:1px solid #604000;background:#17120a;color:#ffe4a0;padding:13px 15px;border-radius:14px;margin-bottom:22px;text-align:center}
+.categories{display:flex;gap:9px;overflow-x:auto;padding:2px 0 18px}.cat{background:#1b1b1b;border:1px solid #484848;color:#fff;border-radius:30px;padding:10px 15px;white-space:nowrap;cursor:pointer;font-weight:700}.cat.active,.cat:hover{background:var(--gold);color:#111;border-color:var(--gold)}
+.section{margin:16px 0 30px;scroll-margin-top:15px}.section-title{font-size:clamp(23px,4vw,32px);margin:0 0 14px;color:var(--gold);text-transform:uppercase;border-bottom:1px solid #634600;padding-bottom:9px}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.card{background:linear-gradient(145deg,#1c1c1c,#101010);border:1px solid #303030;border-radius:17px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 7px 20px #0008}.card img{width:100%;height:175px;object-fit:cover;background:#222}.card-body{padding:14px;display:flex;flex-direction:column;flex:1}.card h3{margin:0 0 7px;font-size:18px}.desc{font-size:13px;color:var(--muted);line-height:1.45;margin:0 0 12px;flex:1}.prices{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.price{font-size:18px;font-weight:900;color:var(--gold)}.size-prices{display:flex;flex-wrap:wrap;gap:6px}.size-prices button{border:1px solid #6b4a00;color:#ffdb77;background:#211700;border-radius:8px;padding:7px 9px;cursor:pointer;font-size:12px;font-weight:700}.add{border:0;background:var(--gold);color:#111;border-radius:10px;padding:10px 12px;font-weight:900;cursor:pointer;margin-top:12px}.add:hover,.btn-gold:hover{background:#ffd04a}.menu-poster{width:100%;height:auto;border-radius:14px;border:1px solid #3b3b3b;display:block;margin:0 auto 20px}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.info{background:#151515;border:1px solid #333;border-radius:15px;padding:16px}.info b{display:block;color:var(--gold);margin-bottom:7px}.info p{margin:0;line-height:1.5;color:#eee}
+.cartbar{position:fixed;z-index:5;bottom:0;left:0;right:0;background:#111f;border-top:1px solid #5a4000;backdrop-filter:blur(10px);padding:11px 14px}.cartinner{width:min(1180px,100%);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:10px}.carttotal strong{display:block}.carttotal small{color:#bbb}.cartopen{background:var(--gold);color:#111;border:0;border-radius:12px;padding:13px 16px;font-weight:900;cursor:pointer}.cartopen:disabled{opacity:.45}
+.overlay{display:none;position:fixed;inset:0;background:#000b;z-index:10;align-items:flex-end;justify-content:center;padding:12px}.overlay.open{display:flex}.drawer{width:min(620px,100%);max-height:90vh;overflow:auto;background:#171717;border:1px solid #444;border-radius:22px;padding:18px}.drawerhead{display:flex;justify-content:space-between;align-items:center}.drawer h2{color:var(--gold);margin:0}.close{border:0;border-radius:50%;width:36px;height:36px;background:#333;color:white;font-size:22px;cursor:pointer}.cart-row{display:flex;justify-content:space-between;gap:10px;align-items:center;border-bottom:1px solid #333;padding:13px 0}.cart-row small{display:block;color:#bbb;margin-top:5px}.qty{display:flex;gap:8px;align-items:center}.qty button{border:0;border-radius:8px;background:#333;color:white;width:30px;height:30px;cursor:pointer}.total{display:flex;justify-content:space-between;font-size:20px;font-weight:900;color:var(--gold);padding:18px 0}.field{display:block;width:100%;padding:12px;border-radius:10px;border:1px solid #444;background:#0b0b0b;color:white;font-size:15px;margin:8px 0}.send{width:100%;margin-top:8px;background:#25d366;color:#061b0c;border:0;border-radius:12px;padding:14px;font-weight:900;cursor:pointer}.hint{font-size:12px;color:#aaa;line-height:1.5}.empty{color:#bbb;padding:20px;text-align:center;grid-column:1/-1}footer{text-align:center;color:#999;font-size:12px;padding:25px 0}
+@media(min-width:700px){.overlay{align-items:center}.drawer{border-radius:22px}}@media(max-width:430px){.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.card img{height:125px}.card-body{padding:10px}.card h3{font-size:15px}.price{font-size:16px}.add{width:100%;font-size:13px}.container{padding-left:10px;padding-right:10px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">Uide<span>Fast food</span></div>
+  <p class="sub" data-i18n="tagline">Дәмді тағам — әрдайым жақын!</p>
+  <div class="delivery" data-i18n="delivery">🛵 ЖЕТКІЗУ БАР</div>
+  <div class="header-actions">
+    <button class="btn btn-dark" id="langBtn">ҚАЗ / РУС</button>
+    <a class="btn btn-gold" href="tel:+77002302331">📞 <span data-i18n="call">Қоңырау шалу</span></a>
+    <a class="btn btn-dark" href="https://wa.me/77002302331" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</header>
+<main class="container">
+  <div class="notice" data-i18n="notice">📍 Қарауыл ауылы, Ералы көшесі 22 Б · Жеткізу бар</div>
+  <img class="menu-poster" src="assets/menu-doner-burger-pizza.jpeg" alt="Uide Fast Food донер, бургер, пицца және басқа тағамдар мәзірі">
+  <img class="menu-poster" src="assets/menu-ramen.jpeg" alt="Таңғы ас және рамен мәзірі">
+  <nav class="categories" id="categories"></nav>
+  <div id="menu"></div>
+  <section class="section">
+    <h2 class="section-title" data-i18n="contacts">Байланыс және мекенжай</h2>
+    <div class="info-grid">
+      <div class="info"><b data-i18n="phoneLabel">Байланыс нөмірі</b><p><a href="tel:+77002302331">+7 700 230 23 31</a></p></div>
+      <div class="info"><b>WhatsApp</b><p><a href="https://wa.me/77002302331" target="_blank" rel="noopener">+7 700 230 23 31</a></p></div>
+      <div class="info"><b data-i18n="addressLabel">Мекенжай</b><p data-i18n="address">Қарауыл ауылы, Ералы көшесі 22 Б</p></div>
+      <div class="info"><b data-i18n="deliveryLabel">Жеткізу</b><p data-i18n="deliveryInfo">Жеткізу бар. Толық ақпаратты телефон немесе WhatsApp арқылы сұраңыз.</p></div>
+    </div>
+  </section>
+  <footer>© Uide Fast Food</footer>
+</main>
+<div class="cartbar"><div class="cartinner"><div class="carttotal"><strong>🛒 <span data-i18n="cart">Себет</span>: <span id="cart-count">0</span></strong><small><span data-i18n="sum">Жалпы</span>: <span id="cart-total">0 ₸</span></small></div><button class="cartopen" id="openCart" disabled data-i18n="order">Тапсырыс беру →</button></div></div>
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Cart"><div class="drawer"><div class="drawerhead"><h2 data-i18n="yourCart">Себетіңіз</h2><button class="close" id="closeCart">×</button></div><div id="cartItems"></div><div class="total"><span data-i18n="total">Барлығы</span><span id="drawerTotal">0 ₸</span></div><input class="field" id="custName" placeholder="Атыңыз"><input class="field" id="custPhone" type="tel" placeholder="Телефон нөміріңіз"><input class="field" id="custAddress" placeholder="Мекенжай / Адрес"><button class="send" id="sendOrder" data-i18n="send">WhatsApp арқылы тапсырыс беру</button><p class="hint" data-i18n="hint">Тапсырыс WhatsApp-та хабарлама ретінде ашылады. Жіберу үшін WhatsApp ішінде растаңыз.</p></div></div>
+<script>
+const PHONE="77002302331";
+const T={
+ kk:{tagline:"Дәмді тағам — әрдайым жақын!",delivery:"🛵 ЖЕТКІЗУ БАР",call:"Қоңырау шалу",notice:"📍 Қарауыл ауылы, Ералы көшесі 22 Б · Жеткізу бар",contacts:"Байланыс және мекенжай",phoneLabel:"Байланыс нөмірі",addressLabel:"Мекенжай",address:"Қарауыл ауылы, Ералы көшесі 22 Б",deliveryLabel:"Жеткізу",deliveryInfo:"Жеткізу бар. Толық ақпаратты телефон немесе WhatsApp арқылы сұраңыз.",cart:"Себет",sum:"Жалпы",order:"Тапсырыс беру →",yourCart:"Себетіңіз",total:"Барлығы",send:"WhatsApp арқылы тапсырыс беру",hint:"Тапсырыс WhatsApp-та хабарлама ретінде ашылады. Жіберу үшін WhatsApp ішінде растаңыз.",all:"Барлығы",add:"+ Себетке",empty:"Себет әзірге бос.",name:"Атыңыз",phone:"Телефон нөміріңіз",addressPlace:"Мекенжай / Адрес",noItems:"Өнім табылмады.",orderMessage:"Сәлеметсіз бе! Тапсырыс бергім келеді:",nameLabel:"Аты",phoneLabel2:"Телефон",addressLabel2:"Мекенжай",categories:{"Донер":"Донер","Бургер":"Бургер","Қанаттар":"Ащы тауық қанаттары","Наггетс":"Наггетстер","Судак":"Қуырылған судак","Фри":"Фри","Пицца":"Пицца","Френч дог":"Френч дог","Таңғы ас":"Таңғы ас","Том ям":"Том ям","Рамен":"Рамен"}},
+ ru:{tagline:"Вкусная еда всегда рядом!",delivery:"🛵 ЕСТЬ ДОСТАВКА",call:"Позвонить",notice:"📍 село Карауыл, улица Ералы 22 Б · Есть доставка",contacts:"Контакты и адрес",phoneLabel:"Контактный номер",addressLabel:"Адрес",address:"село Карауыл, улица Ералы 22 Б",deliveryLabel:"Доставка",deliveryInfo:"Есть доставка. Уточняйте подробности по телефону или WhatsApp.",cart:"Корзина",sum:"Итого",order:"Оформить заказ →",yourCart:"Ваша корзина",total:"Всего",send:"Заказать через WhatsApp",hint:"Заказ откроется сообщением в WhatsApp. Подтвердите отправку в WhatsApp.",all:"Все",add:"+ В корзину",empty:"Корзина пока пуста.",name:"Ваше имя",phone:"Ваш номер телефона",addressPlace:"Адрес доставки",noItems:"Товары не найдены.",orderMessage:"Здравствуйте! Хочу оформить заказ:",nameLabel:"Имя",phoneLabel2:"Телефон",addressLabel2:"Адрес",categories:{"Донер":"Донер","Бургер":"Бургер","Қанаттар":"Острые куриные крылышки","Наггетс":"Наггетсы","Судак":"Жареный судак","Фри":"Фри","Пицца":"Пицца","Френч дог":"Френч-дог","Таңғы ас":"Английский завтрак","Том ям":"Том ям","Рамен":"Рамен"}}
+};
+const groups=[
+{key:"Донер",items:[
+["Донер классический","Классикалық донер",1600,1000],["Донер сырный","Ірімшікті донер",1600,1000],["Донер фирменный","Фирмалық донер",1600,1000],["Донер говяжий","Сиыр етінен донер",2000,1200],["Донер жареный","Қуырылған донер",1800,1200],["Батон донер","Батон донер",1900,900],["Твистер","Твистер",1800]
+]},
+{key:"Бургер",items:[["Бургер говяжий","Сиыр етінен бургер",1800],["Бургер со стрипсами","Стрипсті бургер",1600]]},
+{key:"Қанаттар",items:[["Острые куриные крылышки — 10 шт","Ащы тауық қанаты — 10 дана",1950],["Острые куриные крылышки — 20 шт","Ащы тауық қанаты — 20 дана",3950],["Острые куриные крылышки — 30 шт","Ащы тауық қанаты — 30 дана",5950],["Острые куриные крылышки — 40 шт","Ащы тауық қанаты — 40 дана",7950]]},
+{key:"Наггетс",items:[["Наггетсы — 10 шт","Наггетс — 10 дана",1800]]},
+{key:"Судак",items:[["Жареный судак — 0,5 кг","Қуырылған судак — 0,5 кг",3500]]},
+{key:"Фри",items:[["Фри","Фри",800],["Фри с сосиской","Шұжық қосылған фри",1200]]},
+{key:"Пицца",items:[["Пепперони","Пепперони",2500],["Куриный","Тауық еті қосылған",2500],["Маргарита","Маргарита",2300],["4 сезона","4 маусым",2800]]},
+{key:"Френч дог",items:[["Френч дог","Френч дог",1400]]},
+{key:"Таңғы ас",items:[["Английский завтрак","Ағылшын таңғы асы",1800]]},
+{key:"Том ям",items:[["Том ям","Том ям",3900]]},
+{key:"Рамен",items:[["Классический рамен","Классикалық рамен",1700],["Сырный рамен","Ірімшікті рамен",2200]]}
+];
+const imageByGroup={"Донер":"assets/menu-doner-burger-pizza.jpeg","Бургер":"assets/menu-doner-burger-pizza.jpeg","Қанаттар":"assets/menu-doner-burger-pizza.jpeg","Наггетс":"assets/menu-doner-burger-pizza.jpeg","Судак":"assets/menu-doner-burger-pizza.jpeg","Фри":"assets/menu-doner-burger-pizza.jpeg","Пицца":"assets/menu-doner-burger-pizza.jpeg","Френч дог":"assets/menu-doner-burger-pizza.jpeg","Таңғы ас":"assets/menu-ramen.jpeg","Том ям":"assets/menu-ramen.jpeg","Рамен":"assets/menu-ramen.jpeg"};
+let lang="kk",filter="Барлығы";const cart=new Map();let nextId=1;
+const products=groups.flatMap(g=>g.items.map((it)=>({id:nextId++,group:g.key,ru:it[0],kk:it[1],prices:it.slice(2),image:imageByGroup[g.key]})));
+const fmt=n=>new Intl.NumberFormat(lang==="kk"?"kk-KZ":"ru-RU").format(n)+" ₸";
+function tr(k){return T[lang][k]||k}
+function pname(p){return lang==="kk"?p.kk:p.ru}
+function renderCats(){const el=document.getElementById("categories");el.innerHTML=[`<button class="cat ${filter==="Барлығы"?"active":""}" data-cat="Барлығы">${tr("all")}</button>`,...groups.map(g=>`<button class="cat ${filter===g.key?"active":""}" data-cat="${g.key}">${T[lang].categories[g.key]}</button>`)].join("");el.querySelectorAll("[data-cat]").forEach(b=>b.onclick=()=>{filter=b.dataset.cat;renderCats();renderMenu();document.getElementById("menu").scrollIntoView({behavior:"smooth",block:"start"})})}
+function renderMenu(){const shown=filter==="Барлығы"?groups:groups.filter(g=>g.key===filter);document.getElementById("menu").innerHTML=shown.map(g=>{const ps=products.filter(p=>p.group===g.key);return `<section class="section" id="sec-${g.key}"><h2 class="section-title">${T[lang].categories[g.key]}</h2><div class="products">${ps.map(p=>`<article class="card"><img src="${p.image}" alt="${pname(p)}" loading="lazy"><div class="card-body"><h3>${pname(p)}</h3><p class="desc">${lang==="kk"?"Дәмді әрі жаңа дайындалған тағам.":"Вкусное блюдо, приготовленное из свежих продуктов."}</p><div class="prices">${p.prices.length===2?`<div class="size-prices">${p.prices.map((price,i)=>`<button data-add="${p.id}" data-price="${price}">${i===0?(lang==="kk"?"Үлкен":"Большой"):(lang==="kk"?"Кіші":"Маленький")} · ${fmt(price)}</button>`).join("")}</div>`:`<span class="price">${fmt(p.prices[0])}</span>`}</div>${p.prices.length===1?`<button class="add" data-add="${p.id}" data-price="${p.prices[0]}">${tr("add")}</button>`:""}</div></article>`).join("")}</div></section>`}).join("");document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>add(Number(b.dataset.add),Number(b.dataset.price)))}
+function add(id,price){const key=id+"-"+price;cart.set(key,(cart.get(key)||0)+1);renderCart()}
+function change(key,d){const n=(cart.get(key)||0)+d;if(n<1)cart.delete(key);else cart.set(key,n);renderCart()}
+function sum(){let s=0;for(const [key,q] of cart){s+=Number(key.split("-")[1])*q}return s}
+function renderCart(){let count=0;for(const q of cart.values())count+=q;document.getElementById("cart-count").textContent=count;document.getElementById("cart-total").textContent=fmt(sum());document.getElementById("drawerTotal").textContent=fmt(sum());document.getElementById("openCart").disabled=!count;const el=document.getElementById("cartItems");if(!cart.size){el.innerHTML=`<p class="empty">${tr("empty")}</p>`;return}el.innerHTML=[...cart.entries()].map(([key,q])=>{const [id,price]=key.split("-").map(Number),p=products.find(x=>x.id===id);return `<div class="cart-row"><div><b>${pname(p)}</b><small>${fmt(price)} × ${q} = ${fmt(price*q)}</small></div><div class="qty"><button data-change="${key}" data-d="-1">−</button><b>${q}</b><button data-change="${key}" data-d="1">+</button></div></div>`}).join("");el.querySelectorAll("[data-change]").forEach(b=>b.onclick=()=>change(b.dataset.change,Number(b.dataset.d)))}
+function setLang(){document.documentElement.lang=lang;document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.dataset.i18n;if(T[lang][k])el.textContent=T[lang][k]});document.getElementById("custName").placeholder=tr("name");document.getElementById("custPhone").placeholder=tr("phone");document.getElementById("custAddress").placeholder=tr("addressPlace");document.getElementById("langBtn").textContent=lang==="kk"?"ҚАЗ / РУС":"РУС / ҚАЗ";renderCats();renderMenu();renderCart()}
+document.getElementById("langBtn").onclick=()=>{lang=lang==="kk"?"ru":"kk";setLang()};
+document.getElementById("openCart").onclick=()=>document.getElementById("overlay").classList.add("open");
+document.getElementById("closeCart").onclick=()=>document.getElementById("overlay").classList.remove("open");
+document.getElementById("overlay").onclick=e=>{if(e.target.id==="overlay")e.currentTarget.classList.remove("open")};
+document.getElementById("sendOrder").onclick=()=>{if(!cart.size)return;const name=document.getElementById("custName").value.trim(),phone=document.getElementById("custPhone").value.trim(),address=document.getElementById("custAddress").value.trim();const lines=[tr("orderMessage"),...[...cart.entries()].map(([key,q])=>{const [id,price]=key.split("-").map(Number);return `• ${pname(products.find(p=>p.id===id))} × ${q} — ${fmt(price*q)}`}),`${tr("total")}: ${fmt(sum())}`,name?`${tr("nameLabel")}: ${name}`:"",phone?`${tr("phoneLabel2")}: ${phone}`:"",address?`${tr("addressLabel2")}: ${address}`:"",`${tr("addressLabel")}: ${tr("address")}`].filter(Boolean).join("\n");window.open("https://wa.me/"+PHONE+"?text="+encodeURIComponent(lines),"_blank","noopener")};
+renderCats();renderMenu();renderCart();setLang();
+</script>
+</body>
+</html>
